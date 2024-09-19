@@ -1,18 +1,15 @@
 import  { useState } from 'react';
 import { Box, InputBase, Button, MenuItem, Select, Divider, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-// import useSWR from 'swr';
+import { SelectChangeEvent } from '@mui/material'; // Import SelectChangeEvent
+import { EventSearchBarProps } from '../utils/interface';
 
-interface EventSearchBarProps {
-  onSearch: (searchTerm: string) => void;
-  setCategory: (searchTerm: string) => void;
-  categories: string[]; 
-  category: string; 
-}
+
+
 
 const EventSearchBar = ({ onSearch, setCategory, category, categories }: EventSearchBarProps) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const handleCategoryChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleCategoryChange = (event: SelectChangeEvent<string>) => {
     setCategory(event.target.value as string);
     console.log(event.target.value)
   };
@@ -55,8 +52,20 @@ const EventSearchBar = ({ onSearch, setCategory, category, categories }: EventSe
         value={category}
         onChange={handleCategoryChange}
         displayEmpty
-        sx={{ minWidth: '200px', padding: '8px' }}
-      >
+        sx={{
+          minWidth: '150px',
+          marginLeft: '10px',
+          border: 'none', // Remove border
+          '& fieldset': {
+            border: 'none', // Remove default border for outlined variant
+          },
+          '&:hover': {
+            border: 'none', // Remove border on hover
+          },
+          '&:focus': {
+            border: 'none', // Remove border on focus
+          }
+        }}      >
         <MenuItem value="">
           <em>All Categories</em>
         </MenuItem>
@@ -66,33 +75,7 @@ const EventSearchBar = ({ onSearch, setCategory, category, categories }: EventSe
           </MenuItem>
         ))}
       </Select>
-      {/* <Select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-        displayEmpty
-        sx={{ minWidth: '150px', marginLeft: '10px',textDecoration:"",  border: 'none', 
-          '& fieldset': {
-            border: 'none', 
-          },
-          '&:hover': {
-            border: 'none', 
-          },
-          '&:focus': {
-            border: 'none', 
-          }}}
-      >
-        <MenuItem value="">
-          <em>Categories</em>
-        </MenuItem>
-        <MenuItem value="conference">All</MenuItem>
-        <MenuItem value="workshop">Comedy</MenuItem>
-        <MenuItem value="meetup">Religious</MenuItem>
-        <MenuItem value="meetup">Tech</MenuItem>
-        <MenuItem value="meetup">Health</MenuItem>
-        <MenuItem value="meetup">Fitness</MenuItem>
-        <MenuItem value="meetup">Sports</MenuItem>
-        <MenuItem value="meetup">Education</MenuItem>
-      </Select> */}
+
 
       {/* Search Button */}
       <Button

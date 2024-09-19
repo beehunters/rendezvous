@@ -1,7 +1,8 @@
-import React from "react";
-import { Box, Typography, Link, Grid2 } from "@mui/material";
+import { Box, Typography, Link, } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-const Footer: React.FC = () => {
+
+
+const Footer= () => {
   return (
     <Box
       component="footer"
@@ -10,10 +11,11 @@ const Footer: React.FC = () => {
         color: "#fff", // White text color
         padding: "40px 20px",
         display: "flex",
+        gap:3,
+        flexDirection:{md:"row", xs:"column"},
         justifyContent: "space-between",
         alignItems: "start",
-        // flexWrap: "wrap",
-        // '& > *': {
+      
       }}
     >
       <Box >

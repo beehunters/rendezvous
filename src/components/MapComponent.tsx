@@ -15,7 +15,9 @@ const MyMapComponent= ({lat, long}: mapProps) => {
     <MapContainer center={position} zoom={13} style={{ height: '300px',marginTop:10, width: '100%' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        attribution={
+            '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }
       />
       <Marker position={position}>
         <Popup>

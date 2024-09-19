@@ -8,59 +8,56 @@ import {
   CardContent,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import useSWR from "swr";
+import { EventData } from "../utils/interface";
 
-// Define a type for the event data
-interface EventData {
-  title: string;
-  image: string;
-}
 
-// Sample event data
 const events: EventData[] = [
   {
     title: "Online Events",
-    image: "/online.svg", // Replace with your image path
+    image: "/online.svg", 
   },
   {
     title: "Physical Events",
-    image: "/physical.svg", // Replace with your image path
+    image: "/physical.svg", 
   },
   {
     title: "Hybrid Events",
-    image: "/hybrid.svg", // Replace with your image path
+    image: "/hybrid.svg", 
   },
 ];
 
-const EventSection: React.FC = () => {
- 
+const EventSection = () => {
   return (
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row",
+        flexDirection: {md:"row", xs:"column"},
         justifyContent: "space-between",
-        alignItems: "start",
+        gap:3,
+        alignItems: {xs:"center", md:"start"},
         py: 8,
       }}
     >
       {/* Left side - Text */}
-      <Box sx={{ width: "30%", marginTop:"20px" }}>
-        <Typography variant="h3" sx={{ fontWeight: "bold", mb: 2, fontSize:"32px" }}>
+      <Box sx={{ width: {md:"30%", xs:"100%"}, marginTop: "20px" }}>
+        <Typography
+          variant="h3"
+          sx={{ fontWeight: "bold", mb: 2, fontSize: "32px" }}
+        >
           Discover a World of Events Tailored Just for You.
         </Typography>
-        <Button variant="contained" sx={{backgroundColor:"primary.dark"}} >
-          View all events
+        <Button variant="contained" sx={{ backgroundColor: "primary.dark" }}>
+          View all events 
         </Button>
       </Box>
 
       {/* Right side - Event Cards */}
       <Box
-        sx={{ display: "flex", flexDirection: "column", width: "70%", gap: 3 }}
+        sx={{ display: "flex", flexDirection: "column", width: {md:"70%", xs:"100%"}, gap: 3 }}
       >
         <Grid container spacing={3}>
           {events.map((event, index) => (
-            <Grid size={{xs:12, md:6}} key={index}>
+            <Grid size={{ xs: 12, md: 6 }} key={index}>
               <Card
                 sx={{
                   borderRadius: "12px",

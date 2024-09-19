@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  // Card,
   CircularProgress,
   Stack,
   Typography,
@@ -17,39 +16,17 @@ import InstagramIcon from "../../components/icons/InstagramIcon";
 import TwitterIcon from "../../components/icons/TwitterIcon";
 import { RxPerson } from "react-icons/rx";
 import Grid from "@mui/material/Grid2";
-// Helper function to format the date
-const formatDate = (dateString: string) => {
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  return new Date(dateString).toLocaleDateString(undefined, options);
-};
+import { formatDate, formatTime } from "../../utils/helper";
 
-// Helper function to format the time
-const formatTime = (timeString: string) => {
-  const [hours, minutes] = timeString.split(":");
-  const date = new Date();
-  date.setHours(parseInt(hours));
-  date.setMinutes(parseInt(minutes));
-  return date.toLocaleTimeString([], {
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  });
-};
+
 export default function EventDetail() {
   const { id } = useParams();
   const { data, isLoading, error } = useSWR("/events?page=page");
 
-  // If loading, show a loading spinner
   if (isLoading) {
     return <CircularProgress />;
   }
 
-  // If there is an error fetching data, show an error message
   if (error) {
     return (
       <Typography variant="h6" color="error">
@@ -62,8 +39,7 @@ export default function EventDetail() {
   const event = data?.data.allEvents.find(
     (event: { id: string }) => event.id === id
   );
-  console.log(event);
-  // If event is not found, display a message
+
   if (!event) {
     return <Typography variant="h6">Event not found!</Typography>;
   }
@@ -71,8 +47,8 @@ export default function EventDetail() {
   return (
     <>
       <Navbar />
-      <Box sx={{ padding: "0 150px" }}>
-        <Box sx={{ width: "100%", height: "70vh", overflow: "hidden" }}>
+      <Box sx={{ padding: {md:"0 150px", xs:"0 40px"} }}>
+        <Box sx={{ width: "100%", height: {xs:"25vh", md:"60vh"}, overflow: "hidden" }}>
           <img
             src={event.imageUrl}
             alt={event.title}
@@ -84,9 +60,9 @@ export default function EventDetail() {
             }}
           />{" "}
         </Box>
-        <Grid container justifyContent={"space-between"} alignItems={"end"}>
+        <Grid container justifyContent={"space-between"} gap={4}  alignItems={"end"}>
           {/* Description */}
-          <Grid size={{xs:12, sm:6}}>
+          <Grid size={{ xs: 12, sm: 6 }}>
             <Stack
               sx={{ mt: 5 }}
               direction="row"
@@ -157,11 +133,10 @@ export default function EventDetail() {
                   {event.organizer.name}{" "}
                 </Typography>
               </Stack>
-           
             </Stack>
             {/* Description with map */}
-            <Stack alignItems={"center"} gap={10} direction="row">
-              <Box sx={{ mt: 5,  }}>
+            <Stack alignItems={"center"} gap={10} sx={{flexDirection:{md:"row", xs:"column"}}} direction="row">
+              <Box sx={{ mt: 5 }}>
                 <Typography sx={{ fontWeight: "900", fontSize: "16px" }}>
                   {"Event Description"}
                 </Typography>
@@ -183,13 +158,29 @@ export default function EventDetail() {
             </Stack>
           </Grid>
           {/* Map */}
-          <Grid size={{xs:12, sm:4}}>
-                <Typography sx={{ fontWeight: "900", fontSize: "16px" }}>
-                  {"Contact Organizers"}
-                </Typography>
-                <Stack direction="row" gap={3} mt={2}>
-                  <EmailIcon /> <TwitterIcon /> <InstagramIcon />{" "}
-                </Stack>
+          <Grid size={{ xs: 12, sm: 4 }}>
+            <Typography sx={{ fontWeight: "900", fontSize: "16px" }}>
+              {"Contact Organizers"}
+            </Typography>
+            <Stack direction="row" gap={3} mt={2}>
+              <a
+                href={`mailto:${event?.organizer?.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <EmailIcon />
+              </a>
+
+              {/* Twitter Link */}
+              <a href={event?.organizer?.twitterUrl} target="_blank" rel="noopener noreferrer">
+                <TwitterIcon />
+              </a>
+
+              {/* Instagram Link */}
+              <a href={event?.organizer?.instagram} target="_blank" rel="noopener noreferrer">
+                <InstagramIcon />
+              </a>
+            </Stack>
             <Stack gap={3} sx={{ width: "100%" }}>
               <Typography sx={{ fontWeight: "900", mt: 5, fontSize: "16px" }}>
                 {"Direction"}
@@ -200,60 +191,69 @@ export default function EventDetail() {
         </Grid>
 
         <Box
-      sx={{
-        borderRadius: '8px',
-        padding: '16px',
-        // textAlign: 'center',
-        maxWidth: '300px',
-        // margin: '0 auto',
-      }}
-    >
-      <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '16px' }}>
-        Tickets Pricing
-      </Typography>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          marginBottom: '16px',
-        }}
-      >
-        {/* Single Ticket */}
-        <Box>
-          <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-            Single
+          sx={{
+            borderRadius: "8px",
+            padding: "16px",
+            // textAlign: 'center',
+            maxWidth: "300px",
+            // margin: '0 auto',
+          }}
+        >
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: "bold", marginBottom: "16px" }}
+          >
+            Tickets Pricing
           </Typography>
-          <Typography variant="body1" sx={{ color: '#9C27B0', fontWeight: 'bold' }}>
-            NGN 5,000
-          </Typography>
-        </Box>
-        {/* Pair Ticket */}
-        <Box>
-          <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-            Pair
-          </Typography>
-          <Typography variant="body1" sx={{ color: '#9C27B0', fontWeight: 'bold' }}>
-            NGN 9,000
-          </Typography>
-        </Box>
-      </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "16px",
+            }}
+          >
+            {/* Single Ticket */}
+            <Box>
+              <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+                Single
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{ color: "#9C27B0", fontWeight: "bold" }}
+              >
+                NGN {event.price}
+              </Typography>
+            </Box>
+            {/* Pair Ticket */}
+            <Box>
+              <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+                Pair
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{ color: "#9C27B0", fontWeight: "bold" }}
+              >
+                NGN 9,000
+              </Typography>
+            </Box>
+          </Box>
 
-      {/* Buy Now Button */}
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{
-          backgroundColor: '#9C27B0',
-          color: '#FFFFFF',
-          textTransform: 'none',
-          // borderRadius: '24px',
-          padding: '10px 20px',
-          fontSize: '16px',
-        }}
-      >
-        Buy now
-      </Button>
-    </Box>
+          {/* Buy Now Button */}
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              backgroundColor: "#9C27B0",
+              color: "#FFFFFF",
+              textTransform: "none",
+              // borderRadius: '24px',
+              padding: "10px 20px",
+              fontSize: "16px",
+            }}
+          >
+            Buy now
+          </Button>
+        </Box>
       </Box>
     </>
   );

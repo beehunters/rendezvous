@@ -1,26 +1,13 @@
-import React from 'react';
 import { Card, CardContent, Typography, CardActions, Button } from '@mui/material';
+import { limitText } from '../../utils/helper';
+import { EventCardProps } from '../../utils/interface';
 
-// interface for the card's props
-interface EventCardProps {
-  img: string;
-  title: string;
-  date: string;
-  time: string;
-  description: string;
-  link: string;
-}
-// Utility function to limit description to 150 words
-const limitText = (text: string, limit: number) => {
-  const words = text.split(' ');
-  return words?.length > limit ? words?.slice(0, limit).join(' ') + '...' : text;
-};
-const EventCard: React.FC<EventCardProps> = ({ img,title, date, time, description, link }) => {
+const EventCard = ({ img,title, date, time, description, link }: EventCardProps) => {
   return (
-    <Card variant="outlined" >
+    <Card variant="outlined" sx={{padding:0, borderRadius:5}} >
+        <img src={img} alt="" style={{width:"100%"}} loading='lazy' />
       <CardContent>
-        <img src={img} alt="" width={500} loading='lazy' />
-        <Typography variant="h6" component="div">
+        <Typography variant="h6" component="div" sx={{fontWeight:600}}>
           {title}
         </Typography>
         <Typography sx={{ fontSize: 14, color: 'gray' }} gutterBottom>
