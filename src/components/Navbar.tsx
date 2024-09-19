@@ -7,7 +7,6 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Box, Container, Menu, MenuItem } from '@mui/material';
 import { useState } from 'react';
-import styles from "../styles/Header.module.scss"
 
 const Navbar: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
