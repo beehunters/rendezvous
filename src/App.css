@@ -1,0 +1,12 @@
+
+@font-face {
+  font-family: "gilroy";
+  src: url("./assets/font/gilroy-regular.ttf");
+}
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "gilroy", "Helvetica Neue", Helvetica, Arial;
+}
+
