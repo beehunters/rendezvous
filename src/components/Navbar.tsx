@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
     sx={{
       backgroundColor: 'rgba(255, 255, 255, 0.6)',
       borderRadius: '30px',
-      width: {md:'85%', xs:'100%'},
+      width: {md:'90%', xs:'100%'},
       margin: 'auto',
       boxShadow: 'none',
     }}

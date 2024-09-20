@@ -48,8 +48,8 @@ export default function EventDetail() {
   return (
     <>
       <Navbar />
-      <Box sx={{ padding: {md:"0 140px", xs:"0 40px", sm:"0 20px"} }}>
-        <Box sx={{ width: "100%", height: {xs:"25vh", md:"60vh"}, overflow: "hidden" }}>
+      <Box sx={{ padding: {md:"0 40px", xs:"0 10px", sm:"0 20px"} }}>
+        <Box sx={{ width: "100%", height: {xs:"25vh", md:"55vh"}, overflow: "hidden" }}>
           <img
             src={event?.imageUrl}
             alt={event?.title}
