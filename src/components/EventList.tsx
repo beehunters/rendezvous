@@ -16,8 +16,8 @@ export default function EventList({ events, isLoading }: EventListItemProps) {
 
   return (
     <>
-      <Box sx={{ display: "flex", justifyContent: "space-between", py: 10 }}>
-        <Typography variant="h4" sx={{ color: "#000", fontWeight: "800" }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems:"center", py: 10 }}>
+        <Typography variant="h4" sx={{ color: "#000", fontSize:{xs:"16px", md:"18px"}, fontWeight: "800" }}>
           Upcoming Events
         </Typography>
         <Button

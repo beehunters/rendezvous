@@ -15,7 +15,7 @@ export default function Homeheader({ onSearch, category, setCategory, categories
             margin: "300px auto 0",
             display: "flex",
             flexDirection:{md:"row", xs:"column"},
-            maxWidth: "80%",
+            width: {md:"80%", xs:"100%"},
             justifyContent: "justify-around",
             alignItems: "center",
           }}

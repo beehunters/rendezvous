@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Box, Container, Menu, MenuItem, Stack } from '@mui/material';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -25,21 +26,22 @@ const Navbar: React.FC = () => {
     sx={{
       backgroundColor: 'rgba(255, 255, 255, 0.6)',
       borderRadius: '30px',
-      maxWidth: '85%',
+      width: {md:'85%', xs:'100%'},
       margin: 'auto',
       boxShadow: 'none',
     }}
   >
     <Container maxWidth="xl">
-      <Toolbar disableGutters sx={{ justifyContent: 'center' }}>
+      <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
         {/* Logo */}
+        <Link to={"/"} style={{textDecoration:"none"}}>
         <Typography
           variant="h5"
-          // component="h2"
           sx={{ flexGrow: 1, color: 'primary.main', fontWeight: '900' }}
         >
           rendezvous
         </Typography>
+        </Link>
 
         {/* Navbar for larger screens */}
         <Box
@@ -48,7 +50,7 @@ const Navbar: React.FC = () => {
             justifyContent: 'space-between',
             alignItems: 'center',
             width:'100%',
-            gap: 3, // Spacing between buttons
+            gap: 3, 
           }}
         >
   <Stack direction={"row"} gap={3} sx={{width:"400px", margin:'auto'}}>

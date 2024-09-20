@@ -19,6 +19,7 @@ const EventSearchBar = ({ onSearch, setCategory, category, categories }: EventSe
     <Box
       sx={{
         display: 'flex',
+        flexDirection:{md:"row", xs:'column'},
         alignItems: 'center',
         backgroundColor: '#fff',
         borderRadius: '30px',

@@ -45,7 +45,7 @@ const EventSection = () => {
         >
           Discover a World of Events Tailored Just for You.
         </Typography>
-        <Button variant="contained" sx={{ backgroundColor: "primary.dark" }}>
+        <Button variant="contained" sx={{ backgroundColor: "primary.dark", textTransform:"none" }}>
           View all events 
         </Button>
       </Box>
