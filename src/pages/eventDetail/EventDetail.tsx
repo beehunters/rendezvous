@@ -61,11 +61,11 @@ export default function EventDetail() {
             }}
           />{" "}
         </Box>
-        <Grid container justifyContent={"space-between"} gap={4}  alignItems={"end"}>
+        <Grid container justifyContent={"space-between"} gap={4} mt={5} alignItems={"start"}>
           {/* Description */}
           <Grid size={{ xs: 12, sm: 6 }}>
             <Stack
-              sx={{ mt: 5 }}
+              sx={{  }}
               direction="row"
               alignItems={"end"}
               justifyContent={"space-between"}

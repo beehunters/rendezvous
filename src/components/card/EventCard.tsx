@@ -1,5 +1,5 @@
 import { Card, CardContent, Typography, CardActions, Button } from '@mui/material';
-import { limitText } from '../../utils/helper';
+import { formatDate, formatTime, limitText } from '../../utils/helper';
 import { EventCardProps } from '../../utils/interface';
 
 const EventCard = ({ img,title, date, time, description, link }: EventCardProps) => {
@@ -10,10 +10,10 @@ const EventCard = ({ img,title, date, time, description, link }: EventCardProps)
         <Typography variant="h6" component="div" sx={{fontWeight:600}}>
           {title}
         </Typography>
-        <Typography sx={{ fontSize: 14, color: 'gray' }} gutterBottom>
-          {date} • {time}
+        <Typography sx={{ fontSize: 14, color: '#000', fontWeight:600 }} gutterBottom>
+          {formatDate( date)} • {formatTime(time)}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" sx={{fontSize:"14px"}}>
           {limitText(description, 15)}
         </Typography>
       </CardContent>
