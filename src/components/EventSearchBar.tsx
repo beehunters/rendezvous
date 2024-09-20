@@ -11,9 +11,7 @@ const EventSearchBar = ({ onSearch, setCategory, category, categories }: EventSe
   const [searchTerm, setSearchTerm] = useState('');
   const handleCategoryChange = (event: SelectChangeEvent<string>) => {
     setCategory(event.target.value as string);
-    console.log(event.target.value)
   };
-  console.log(categories)
   const handleSearch = () => {
     onSearch(searchTerm); // Pass search term and category to parent
   };

@@ -14,7 +14,6 @@ export default function Home() {
   const [category, setCategory] = useState("");
   const [filteredEvents, setFilteredEvents] = useState<Event[]>([]); 
 
-  console.log(category);
   const handleSearch = (term: string) => {
     setSearchTerm(term);
   };

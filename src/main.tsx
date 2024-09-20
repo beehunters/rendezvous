@@ -10,8 +10,7 @@ import { SWRConfig } from "swr";
 import init from "./config/_config.ts";
 const fetcher = async (url: string) => {
   const res = await axios.get(url);
-  console.log("fetcher", res)
-  return res.data; // Use axios and return res.data directly
+  return res.data; 
 };
 init()
 createRoot(document.getElementById("root")!).render(
@@ -21,8 +20,7 @@ createRoot(document.getElementById("root")!).render(
       <SWRConfig
       value={{
         fetcher,
-        onError: (error) => {
-          console.error("Error fetching data:", error);
+        onError: () => {
         },
         revalidateOnFocus: false, 
         shouldRetryOnError: true, 
