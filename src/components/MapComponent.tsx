@@ -1,26 +1,51 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import { useEffect, useRef } from 'react';
+import Map from 'ol/Map';
+import View from 'ol/View';
+import { fromLonLat } from 'ol/proj';
+import TileLayer from 'ol/layer/Tile';
+import OSM from 'ol/source/OSM';
 
-interface mapProps {
+interface MapProps {
   lat: number;
-  long: number; // Example: San Francisco Latitude and Longitude
+  long: number;  
 }
 
-// Define the component using React.FC (Functional Component) with TypeScript
-const MyMapComponent = ({ lat, long }: mapProps) => {
-  const position: [number, number] = [lat, long]; // Example: San Francisco Latitude and Longitude
+const MyMapComponent: React.FC<MapProps> = ({ lat, long }) => {
+  const mapRef = useRef<HTMLDivElement | null>(null);
+  const mapRefInstance = useRef<Map | null>(null); 
 
-  return (
-    <MapContainer
-      bounds={position}
-      style={{ height: "300px", marginTop: 10, width: "100%" }}
-    >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      <Marker position={position}>
-        <Popup>San Francisco</Popup>
-      </Marker>
-    </MapContainer>
-  );
+  useEffect(() => {
+    if (mapRef.current) {
+      if (!mapRefInstance.current) {
+        mapRefInstance.current = new Map({
+          target: mapRef.current,
+          layers: [
+            new TileLayer({
+              source: new OSM(),
+            }),
+          ],
+          view: new View({
+            center: fromLonLat([long, lat]),
+            zoom: 13,
+          }),
+        });
+      } else {
+        mapRefInstance.current.setView(new View({
+          center: fromLonLat([long, lat]),
+          zoom: 13,
+        }));
+      }
+    }
+
+    return () => {
+      if (mapRefInstance.current) {
+        mapRefInstance.current.setTarget(undefined); 
+        mapRefInstance.current = null; 
+      }
+    };
+  }, [lat, long]);
+
+  return <div ref={mapRef} style={{ height: '300px', width: '100%' }} />;
 };
 
 export default MyMapComponent;

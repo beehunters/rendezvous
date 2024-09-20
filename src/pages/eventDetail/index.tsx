@@ -10,13 +10,14 @@ import useSWR from "swr";
 import Navbar from "../../components/Navbar";
 import { FaRegClock } from "react-icons/fa";
 import { CiCalendar, CiLocationOn } from "react-icons/ci";
-import MyMapComponent from "../../components/MapComponent";
+// import MyMapComponent from "../../components/MapComponent";
 import EmailIcon from "../../components/icons/EmailIcon";
 import InstagramIcon from "../../components/icons/InstagramIcon";
 import TwitterIcon from "../../components/icons/TwitterIcon";
 import { RxPerson } from "react-icons/rx";
 import Grid from "@mui/material/Grid2";
 import { formatDate, formatTime } from "../../utils/helper";
+import MyMapComponent from "../../components/MapComponent";
 
 
 export default function EventDetail() {
