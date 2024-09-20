@@ -20,7 +20,6 @@ import MyMapComponent from "../../components/MapComponent";
 
 
 export default function EventDetail() {
-  // const { id } = useParams();
   const [searchParams] = useSearchParams(); // Get search params
   const id = searchParams.get("id"); // Retrieve the event ID from the query string
   const { data, isLoading, error } = useSWR("/events?page=page");
