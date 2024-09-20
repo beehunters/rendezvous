@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeLayout />}>
           <Route index element={<Home />} /> {/* Default route */}
-          <Route path="event/:id" element={<EventDetail />} />
+          <Route path="event" element={<EventDetail />} /> {/* Updated to path without ID */}
           <Route path="*" element={<NotFound />} /> {/* Catch-all for 404 */}
         </Route>
         <Route path="*" element={<ErrorPage />} /> {/* Global error page */}

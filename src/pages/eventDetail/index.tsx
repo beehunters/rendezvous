@@ -5,7 +5,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { useParams } from "react-router-dom";
+import {  useSearchParams } from "react-router-dom";
 import useSWR from "swr";
 import Navbar from "../../components/Navbar";
 import { FaRegClock } from "react-icons/fa";
@@ -16,11 +16,13 @@ import TwitterIcon from "../../components/icons/TwitterIcon";
 import { RxPerson } from "react-icons/rx";
 import Grid from "@mui/material/Grid2";
 import { formatDate, formatTime } from "../../utils/helper";
-// import MyMapComponent from "../../components/MapComponent";
+import MyMapComponent from "../../components/MapComponent";
 
 
 export default function EventDetail() {
-  const { id } = useParams();
+  // const { id } = useParams();
+  const [searchParams] = useSearchParams(); // Get search params
+  const id = searchParams.get("id"); // Retrieve the event ID from the query string
   const { data, isLoading, error } = useSWR("/events?page=page");
 
   if (isLoading) {
@@ -185,7 +187,7 @@ export default function EventDetail() {
               <Typography sx={{ fontWeight: "900", mt: 5, fontSize: "16px" }}>
                 {"Direction"}
               </Typography>
-              {/* <MyMapComponent lat={event.lat} long={event.long} /> */}
+              <MyMapComponent lat={event.lat} long={event.long} />
             </Stack>
           </Grid>
         </Grid>

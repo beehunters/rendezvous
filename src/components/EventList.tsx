@@ -45,7 +45,7 @@ export default function EventList({ events, isLoading }: EventListItemProps) {
                     date={event.date}
                     time={event.time}
                     description={event.description}
-                    link={`/event/${event.id}`}
+                    link={`/event/?id=${event.id}`}
                   />
                 </Grid>
               )
