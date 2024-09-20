@@ -48,7 +48,7 @@ export default function EventDetail() {
   return (
     <>
       <Navbar />
-      <Box sx={{ padding: {md:"0 150px", xs:"0 40px"} }}>
+      <Box sx={{ padding: {md:"0 140px", xs:"0 40px", sm:"0 20px"} }}>
         <Box sx={{ width: "100%", height: {xs:"25vh", md:"60vh"}, overflow: "hidden" }}>
           <img
             src={event?.imageUrl}
@@ -63,7 +63,7 @@ export default function EventDetail() {
         </Box>
         <Grid container justifyContent={"space-between"} gap={4} mt={5} alignItems={"start"}>
           {/* Description */}
-          <Grid size={{ xs: 12, sm: 6 }}>
+          <Grid size={{ xs: 12, md: 6, sm:12 }}>
             <Stack
               sx={{  }}
               direction="row"
@@ -159,7 +159,7 @@ export default function EventDetail() {
             </Stack>
           </Grid>
           {/* Map */}
-          <Grid size={{ xs: 12, sm: 4 }}>
+          <Grid size={{ xs: 12, md: 4, sm:12 }}>
             <Typography sx={{ fontWeight: "900", fontSize: "16px" }}>
               {"Contact Organizers"}
             </Typography>
