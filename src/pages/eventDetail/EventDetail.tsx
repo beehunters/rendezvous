@@ -38,8 +38,8 @@ export default function EventDetail() {
   }
 
   // Find the specific event by its ID
-  const event = data?.data.allEvents.find(
-    (event: { id: string }) => event.id === id
+  const event = data?.data?.allEvents?.find(
+    (event: { id: string }) => event?.id === id
   );
 
   if (!event) {
@@ -52,8 +52,8 @@ export default function EventDetail() {
       <Box sx={{ padding: {md:"0 150px", xs:"0 40px"} }}>
         <Box sx={{ width: "100%", height: {xs:"25vh", md:"60vh"}, overflow: "hidden" }}>
           <img
-            src={event.imageUrl}
-            alt={event.title}
+            src={event?.imageUrl}
+            alt={event?.title}
             style={{
               width: "100%",
               height: "100%",
@@ -91,7 +91,7 @@ export default function EventDetail() {
                   >
                     {" "}
                     <CiCalendar style={{ color: "#9B51E0" }} />{" "}
-                    {formatDate(event.date)}{" "}
+                    {formatDate(event?.date)}{" "}
                   </Typography>
                   <Typography
                     variant="h5"
@@ -105,7 +105,7 @@ export default function EventDetail() {
                   >
                     {" "}
                     <FaRegClock style={{ color: "#9B51E0" }} />{" "}
-                    {formatTime(event.time)}{" "}
+                    {formatTime(event?.time)}{" "}
                   </Typography>
                 </Box>
                 <Typography
@@ -119,7 +119,7 @@ export default function EventDetail() {
                   }}
                 >
                   {" "}
-                  <CiLocationOn style={{ color: "#9B51E0" }} /> {event.address}{" "}
+                  <CiLocationOn style={{ color: "#9B51E0" }} /> {event?.address}{" "}
                 </Typography>
                 <Typography
                   sx={{
@@ -132,7 +132,7 @@ export default function EventDetail() {
                 >
                   {" "}
                   <RxPerson style={{ color: "#9B51E0" }} />{" "}
-                  {event.organizer.name}{" "}
+                  {event?.organizer?.name}{" "}
                 </Typography>
               </Stack>
             </Stack>
@@ -154,7 +154,7 @@ export default function EventDetail() {
                   }}
                 >
                   {" "}
-                  {event.description}{" "}
+                  {event?.description}{" "}
                 </Typography>
               </Box>
             </Stack>
@@ -187,7 +187,7 @@ export default function EventDetail() {
               <Typography sx={{ fontWeight: "900", mt: 5, fontSize: "16px" }}>
                 {"Direction"}
               </Typography>
-              <MyMapComponent lat={event.lat} long={event.long} />
+              <MyMapComponent lat={event?.lat} long={event?.long} />
             </Stack>
           </Grid>
         </Grid>
@@ -223,7 +223,7 @@ export default function EventDetail() {
                 variant="body1"
                 sx={{ color: "#9C27B0", fontWeight: "bold" }}
               >
-                NGN {event.price}
+                NGN {event?.price}
               </Typography>
             </Box>
             {/* Pair Ticket */}
@@ -248,7 +248,6 @@ export default function EventDetail() {
               backgroundColor: "#9C27B0",
               color: "#FFFFFF",
               textTransform: "none",
-              // borderRadius: '24px',
               padding: "10px 20px",
               fontSize: "16px",
             }}
